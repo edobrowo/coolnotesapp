@@ -4,7 +4,7 @@
   "description": "Notes app that's pretty cool.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "npm start --prefix client"
   },
   "author": "edobrowo",
   "license": "ISC",
