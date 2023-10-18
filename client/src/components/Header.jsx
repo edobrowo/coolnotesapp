@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 function Header() {
   const views = [<HiViewList />, <HiViewGrid />];
 
-  const user = null; //{ view: 0 }; // dummy
+  const user = { view: 0 }; // dummy
 
   const [view, setView] = useState(user ? user.view : 0);
 

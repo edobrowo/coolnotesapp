@@ -11,7 +11,7 @@ function NotesArea() {
       for (let i = 1; i <= 20; ++i) {
         await noteService.createNote({
           title: `t${i}`,
-          content: `c${i}leijrgnergberigybeleijrgnergberigybeleijrgnergberigybeleijrgnergberigybeleijrgnergberigybeleijrgnergberigybe`,
+          content: `c${i}`,
         });
       }
       const notes = await noteService.retrieveNotes();
