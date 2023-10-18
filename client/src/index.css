@@ -3,13 +3,14 @@
   --text-color: #c1c0b5;
   --sub-color: #646669;
   --sub-alt-color: #2c2e31;
+  --highlight-color: #e2b514b9;
 
-  --main-color: #e2b714;
-  --caret-color: #e2b714;
   --error-color: #ca4754;
   --error-extra-color: #7e2a33;
   --colorful-error-color: #ca4754;
   --colorful-error-extra-color: #7e2a33;
+
+  --font-default: "Roboto Mono", monospace;
 }
 
 * {
@@ -19,7 +20,7 @@
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: var(--font-default);
   height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -34,10 +35,6 @@ ul {
   list-style: none;
 }
 
-li {
-  line-height: 2.2;
-}
-
 svg {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -46,7 +43,7 @@ svg {
 }
 
 .container {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
@@ -57,13 +54,15 @@ svg {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  margin-bottom: 60px;
-  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-size: 1.6em;
 }
 
 .header div a {
   display: flex;
   align-items: center;
+  padding: 10px;
+  border-bottom: solid var(--highlight-color);
 }
 
 .header div a svg {
@@ -81,11 +80,52 @@ svg {
   margin-left: 20px;
 }
 
-.header ul li:hover {
-  color: var(--sub-color);
+.brand a:hover,
+.header ul li svg:hover,
+.header ul li a svg:hover {
+  animation: interact-hover 0.1s forwards;
 }
 
-.header ul li a:hover {
-  color: var(--sub-color);
+.notes {
+  padding: 20px;
+  margin: 0 10% 0 10%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
+.note {
+  min-height: 30px;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding: 8px;
+  background: var(--sub-alt-color);
+  position: relative;
+}
+
+.note h3 {
+  font: normal normal 0.85em, var(--font-default);
+  margin-bottom: 0.8em;
+}
+
+.note p {
+  font-size: 0.8em;
+  line-height: 1.5;
+  text-align: left;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@keyframes interact-hover {
+  0% {color: var(--text-color)}
+  100% {color: var(--sub-color)}
+}
+
+@media (max-width: 800px) {
+  .notes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

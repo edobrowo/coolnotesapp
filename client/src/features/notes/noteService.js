@@ -31,15 +31,15 @@ async function createNote(noteData) {
 }
 
 async function removeNote(noteData) {
-  const index = notes.findIndex((note) => note.id == noteData.id);
-  if (index == -1) return -1;
+  const index = notes.findIndex((note) => note.id === noteData.id);
+  if (index === -1) return -1;
   const note = notes.shift(index, 1);
   return note.id;
 }
 
 async function editNote(noteData) {
-  const index = notes.findIndex((note) => note.id == noteData.id);
-  if (index == -1) return -1;
+  const index = notes.findIndex((note) => note.id === noteData.id);
+  if (index === -1) return -1;
   notes[index].title = noteData.title ? noteData.title : notes[index].title;
   notes[index].content = noteData.content
     ? noteData.content
