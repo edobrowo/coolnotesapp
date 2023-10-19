@@ -1,10 +1,10 @@
 import NotesArea from '../components/NotesArea';
 
-function Dashboard() {
+function Dashboard({ user, handleUserChanged }) {
   return (
     <div className="dashboard">
       <section className="content">
-        <NotesArea />
+        <NotesArea notes={user.notes} view={user.view} />
       </section>
     </div>
   );

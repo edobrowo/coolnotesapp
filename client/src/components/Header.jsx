@@ -1,24 +1,22 @@
-import { useState } from 'react';
 import {
   HiDocumentText,
   HiViewList,
   HiViewGrid,
-  HiCog,
+  HiColorSwatch,
   HiUser,
   HiLogout,
 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-function Header() {
-  const views = [<HiViewList />, <HiViewGrid />];
-
-  const user = { view: 0 }; // dummy
-
-  const [view, setView] = useState(user ? user.view : 0);
+function Header({ user, handleUserChanged }) {
+  const viewIcons = new Map([
+    ['list', <HiViewList />],
+    ['grid', <HiViewGrid />],
+  ]);
 
   function onChangeView() {
-    setView((view + 1) % views.length);
-    console.log('change view');
+    const updatedView = user.view === 'list' ? 'grid' : 'list';
+    handleUserChanged({ ...user, view: updatedView });
   }
 
   function onLogout() {
@@ -35,10 +33,12 @@ function Header() {
       </div>
       <ul className="options">
         <li>
-          <div onClick={onChangeView}>{views[view]}</div>
+          <div onClick={onChangeView}>
+            {viewIcons.get(user.view ? user.view : 'list')}
+          </div>
         </li>
         <li>
-          <HiCog />
+          <HiColorSwatch />
         </li>
         {!user ? (
           <li>
