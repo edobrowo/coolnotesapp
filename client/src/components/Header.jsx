@@ -19,6 +19,11 @@ function Header({ user, handleUserChanged }) {
     handleUserChanged({ ...user, view: updatedView });
   }
 
+  function onChangeTheme() {
+    const updatedTheme = user.theme === 'dark' ? 'light' : 'dark';
+    handleUserChanged({ ...user, theme: updatedTheme });
+  }
+
   function onLogout() {
     console.log('logout');
   }
@@ -38,7 +43,7 @@ function Header({ user, handleUserChanged }) {
           </div>
         </li>
         <li>
-          <HiColorSwatch />
+          <HiColorSwatch onClick={onChangeTheme} />
         </li>
         {!user ? (
           <li>

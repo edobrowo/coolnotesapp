@@ -9,7 +9,7 @@ function App() {
   const [user, setUser] = useState({
     notes: [],
     view: 'list',
-    style: 'darkmode',
+    theme: 'dark',
   });
 
   const isDummyInitialized = useRef(false);
@@ -36,7 +36,11 @@ function App() {
   return (
     <>
       <Router>
-        <div className="container">
+        <div
+          className={
+            'container' + (user.theme === 'light' ? ' light-mode' : '')
+          }
+        >
           <Header user={user} handleUserChanged={setUser} />
           <Routes>
             <Route

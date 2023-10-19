@@ -3,12 +3,7 @@
   --text-color: #c1c0b5;
   --sub-color: #646669;
   --sub-alt-color: #2c2e31;
-  --highlight-color: #e2b514b9;
-
-  --error-color: #ca4754;
-  --error-extra-color: #7e2a33;
-  --colorful-error-color: #ca4754;
-  --colorful-error-extra-color: #7e2a33;
+  --highlight-color: #e2b5147f;
 
   --font-default: "Roboto Mono", monospace;
 }
@@ -19,9 +14,21 @@
   box-sizing: border-box;
 }
 
+.light-mode {
+  --bg-color: #e2e2e0;
+  --text-color: #222427;
+  --sub-color: #020003;
+  --sub-alt-color: #dbdbd9;
+}
+
 body {
   font-family: var(--font-default);
   height: 100vh;
+  background-color: var(--bg-color); /* hmmm */
+  color: var(--text-color);
+}
+
+.container {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -62,11 +69,19 @@ svg {
   font-size: 1.6em;
 }
 
-.header div a {
+.brand a {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: solid var(--highlight-color);
+  border-bottom: 0.25em double var(--highlight-color);
+}
+
+.brand a {
+  transition: padding 0.5s;
+}
+
+.brand a:hover {
+  padding-left: 20px;
 }
 
 .header div a svg {
@@ -84,10 +99,14 @@ svg {
   margin-left: 20px;
 }
 
+.brand, .header ul li svg, .header ul li a svg {
+  transition: color 0.15s;
+}
+
 .brand a:hover,
 .header ul li svg:hover,
 .header ul li a svg:hover {
-  animation: interact-hover 0.15s forwards;
+  color: var(--sub-color);
 }
 
 .notes {
@@ -122,11 +141,6 @@ svg {
   overflow-wrap: anywhere;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-@keyframes interact-hover {
-  0% {color: var(--text-color)}
-  100% {color: var(--sub-color)}
 }
 
 @media (max-width: 600px) {
