@@ -26,11 +26,13 @@ body {
   height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
+  transition: background-color 0.5s, color 0.5s;
 }
 
 a {
   text-decoration: none;
   color: var(--text-color);
+  transition: color 0.5s;
 }
 
 ul {
@@ -69,14 +71,11 @@ svg {
   align-items: center;
   padding: 10px;
   border-bottom: 0.25em double var(--highlight-color);
-}
-
-.brand a {
-  transition: padding 0.5s;
+  transition: margin 0.5s;
 }
 
 .brand a:hover {
-  padding-left: 20px;
+  margin-left: 20px;
 }
 
 .header div a svg {
@@ -120,6 +119,7 @@ svg {
   align-items: baseline;
   padding: 8px;
   background: var(--sub-alt-color);
+  transition: background-color 0.5s;
   border-radius: 10px;
   position: relative;
 }
