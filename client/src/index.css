@@ -6,6 +6,8 @@
   --highlight-color: #e2b5147f;
 
   --font-default: "Roboto Mono", monospace;
+
+  --theme-change-seconds: 0.5s;
 }
 
 * {
@@ -26,13 +28,13 @@ body {
   height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.5s, color 0.5s;
+  transition: background-color var(--theme-change-seconds), color var(--theme-change-seconds);
 }
 
 a {
   text-decoration: none;
   color: var(--text-color);
-  transition: color 0.5s;
+  transition: color var(--theme-change-seconds);
 }
 
 ul {
@@ -119,9 +121,13 @@ svg {
   align-items: baseline;
   padding: 8px;
   background: var(--sub-alt-color);
-  transition: background-color 0.5s;
+  transition: background-color var(--theme-change-seconds), outline 0.15s;
   border-radius: 10px;
   position: relative;
+}
+
+.note:hover {
+  outline: 0.15em solid var(--text-color);
 }
 
 .note h3 {
