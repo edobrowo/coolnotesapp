@@ -2,7 +2,8 @@ import {
   HiDocumentText,
   HiViewList,
   HiViewGrid,
-  HiColorSwatch,
+  HiSun,
+  HiMoon,
   HiUser,
   HiLogout,
 } from 'react-icons/hi';
@@ -13,6 +14,10 @@ function Header({ user, handleUserChanged }) {
     ['list', <HiViewList />],
     ['grid', <HiViewGrid />],
   ]);
+  const themeIcons = new Map([
+    ['dark', <HiSun />],
+    ['light', <HiMoon />],
+  ]);
 
   function onChangeView() {
     const updatedView = user.view === 'list' ? 'grid' : 'list';
@@ -21,6 +26,7 @@ function Header({ user, handleUserChanged }) {
 
   function onChangeTheme() {
     const updatedTheme = user.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', updatedTheme);
     handleUserChanged({ ...user, theme: updatedTheme });
   }
 
@@ -43,7 +49,9 @@ function Header({ user, handleUserChanged }) {
           </div>
         </li>
         <li>
-          <HiColorSwatch onClick={onChangeTheme} />
+          <div onClick={onChangeTheme}>
+            {themeIcons.get(user.theme ? user.theme : 'dark')}
+          </div>
         </li>
         {!user ? (
           <li>

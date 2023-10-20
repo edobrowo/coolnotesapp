@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-.light-mode {
+[data-theme="light"] {
   --bg-color: #e2e2e0;
   --text-color: #222427;
   --sub-color: #020003;
@@ -24,11 +24,6 @@
 body {
   font-family: var(--font-default);
   height: 100vh;
-  background-color: var(--bg-color); /* hmmm */
-  color: var(--text-color);
-}
-
-.container {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
