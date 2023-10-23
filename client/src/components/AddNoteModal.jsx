@@ -18,7 +18,7 @@ function AddNoteModal({ user, handleUserChanged, handleAddNoteModalClose }) {
     <div className="add-note-modal">
       <div className="overlay"></div>
       <div className="modal-content">
-        <form onSubmit={(e) => handleFormSubmit(e)}>
+        <form method="" onSubmit={(e) => handleFormSubmit(e)}>
           <div className="form-group">
             <input
               type="text"
