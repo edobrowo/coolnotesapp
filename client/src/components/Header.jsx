@@ -1,5 +1,6 @@
 import {
   HiDocumentText,
+  HiPlus,
   HiViewList,
   HiViewGrid,
   HiSun,
@@ -9,14 +10,14 @@ import {
 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-function Header({ user, handleUserChanged }) {
+function Header({ user, handleUserChanged, handleaddNoteModalOpen }) {
   const viewIcons = new Map([
     ['list', <HiViewList />],
     ['grid', <HiViewGrid />],
   ]);
   const themeIcons = new Map([
-    ['dark', <HiSun />],
-    ['light', <HiMoon />],
+    ['dark', <HiMoon />],
+    ['light', <HiSun />],
   ]);
 
   function onChangeView() {
@@ -43,6 +44,9 @@ function Header({ user, handleUserChanged }) {
         </Link>
       </div>
       <ul className="options">
+        <li>
+          <HiPlus onClick={handleaddNoteModalOpen} />
+        </li>
         <li>
           <div onClick={onChangeView}>
             {viewIcons.get(user.view ? user.view : 'list')}

@@ -11,6 +11,15 @@ function App() {
     view: 'list',
     theme: 'dark',
   });
+  const [addNoteModalOpen, setaddNoteModalOpen] = useState(false);
+
+  function openAddNoteModal() {
+    setaddNoteModalOpen(true);
+  }
+
+  function closeAddNoteModal() {
+    setaddNoteModalOpen(false);
+  }
 
   const isDummyInitialized = useRef(false);
 
@@ -41,11 +50,22 @@ function App() {
             'container' + (user.theme === 'light' ? ' light-mode' : '')
           }
         >
-          <Header user={user} handleUserChanged={setUser} />
+          <Header
+            user={user}
+            handleUserChanged={setUser}
+            handleaddNoteModalOpen={openAddNoteModal}
+          />
           <Routes>
             <Route
               path="/"
-              element={<Dashboard user={user} handleUserChanged={setUser} />}
+              element={
+                <Dashboard
+                  user={user}
+                  handleUserChanged={setUser}
+                  handleAddNoteModalClose={closeAddNoteModal}
+                  addNoteModalOpen={addNoteModalOpen}
+                />
+              }
             />
             <Route
               path="/login"
