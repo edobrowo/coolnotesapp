@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HiX, HiCheck } from 'react-icons/hi';
 import noteService from '../features/notes/noteService';
 
-function AddNoteModal({ user, handleUserChanged, handleAddNoteModalClose }) {
+function AddNoteModal({ user, onUserChanged, onAddNoteModalClose }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -10,8 +10,8 @@ function AddNoteModal({ user, handleUserChanged, handleAddNoteModalClose }) {
     e.preventDefault();
     await noteService.createNote({ title: title, content: content });
     const notes = await noteService.retrieveNotes();
-    handleUserChanged({ ...user, notes: notes });
-    handleAddNoteModalClose();
+    onUserChanged({ ...user, notes: notes });
+    onAddNoteModalClose();
   }
 
   return (
@@ -44,7 +44,7 @@ function AddNoteModal({ user, handleUserChanged, handleAddNoteModalClose }) {
             </button>
           </div>
         </form>
-        <HiX className="close-modal" onClick={handleAddNoteModalClose} />
+        <HiX className="close-modal" onClick={onAddNoteModalClose} />
       </div>
     </div>
   );

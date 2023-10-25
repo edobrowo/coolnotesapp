@@ -3,8 +3,8 @@ import AddNoteModal from '../components/AddNoteModal';
 
 function Dashboard({
   user,
-  handleUserChanged,
-  handleAddNoteModalClose,
+  onUserChanged,
+  onAddNoteModalClose,
   addNoteModalOpen,
 }) {
   return (
@@ -15,8 +15,8 @@ function Dashboard({
       {addNoteModalOpen && (
         <AddNoteModal
           user={user}
-          handleUserChanged={handleUserChanged}
-          handleAddNoteModalClose={handleAddNoteModalClose}
+          onUserChanged={onUserChanged}
+          onAddNoteModalClose={onAddNoteModalClose}
         />
       )}
     </div>

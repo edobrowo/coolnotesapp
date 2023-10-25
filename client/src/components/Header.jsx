@@ -10,7 +10,7 @@ import {
 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-function Header({ user, handleUserChanged, handleaddNoteModalOpen }) {
+function Header({ user, onUserChanged, onAddNoteModalOpen }) {
   const viewIcons = new Map([
     ['list', <HiViewList />],
     ['grid', <HiViewGrid />],
@@ -20,18 +20,18 @@ function Header({ user, handleUserChanged, handleaddNoteModalOpen }) {
     ['light', <HiSun />],
   ]);
 
-  function onChangeView() {
+  function handleChangeView() {
     const updatedView = user.view === 'list' ? 'grid' : 'list';
-    handleUserChanged({ ...user, view: updatedView });
+    onUserChanged({ ...user, view: updatedView });
   }
 
-  function onChangeTheme() {
+  function handleChangeTheme() {
     const updatedTheme = user.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', updatedTheme);
-    handleUserChanged({ ...user, theme: updatedTheme });
+    onUserChanged({ ...user, theme: updatedTheme });
   }
 
-  function onLogout() {
+  function handleLogout() {
     console.log('logout');
   }
 
@@ -45,15 +45,15 @@ function Header({ user, handleUserChanged, handleaddNoteModalOpen }) {
       </div>
       <ul className="options">
         <li>
-          <HiPlus onClick={handleaddNoteModalOpen} />
+          <HiPlus onClick={onAddNoteModalOpen} />
         </li>
         <li>
-          <div onClick={onChangeView}>
+          <div onClick={handleChangeView}>
             {viewIcons.get(user.view ? user.view : 'list')}
           </div>
         </li>
         <li>
-          <div onClick={onChangeTheme}>
+          <div onClick={handleChangeTheme}>
             {themeIcons.get(user.theme ? user.theme : 'dark')}
           </div>
         </li>
@@ -65,7 +65,7 @@ function Header({ user, handleUserChanged, handleaddNoteModalOpen }) {
           </li>
         ) : (
           <li>
-            <HiLogout onClick={onLogout} />
+            <HiLogout onClick={handleLogout} />
           </li>
         )}
       </ul>

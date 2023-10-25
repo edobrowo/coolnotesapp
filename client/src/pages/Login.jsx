@@ -1,4 +1,4 @@
-function Login({ handleUserChanged }) {
+function Login({ onUserChanged }) {
   return <div>Login</div>;
 }
 
