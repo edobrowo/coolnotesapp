@@ -151,7 +151,7 @@ svg {
   overflow: hidden;
 }
 
-.add-note-modal {
+.note-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -160,7 +160,7 @@ svg {
   z-index: 990;
 }
 
-.add-note-modal .overlay {
+.note-modal .overlay {
   position: absolute;
   left: 0;
   top: 0;
@@ -170,7 +170,7 @@ svg {
   background: var(--bg-color-t);
 }
 
-.add-note-modal .modal-content {
+.note-modal .modal-content {
   z-index: 999;
   position: absolute;
   top: 50%;
@@ -188,7 +188,7 @@ svg {
   outline: solid 1px var(--text-color);
 }
 
-.add-note-modal .close-modal {
+.note-modal .close-modal {
   position: absolute;
   right: 10px;
   top: 10px;

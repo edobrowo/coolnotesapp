@@ -1,22 +1,17 @@
 import NotesArea from '../components/NotesArea';
-import AddNoteModal from '../components/AddNoteModal';
+import NoteModal from '../components/NoteModal';
 
-function Dashboard({
-  user,
-  onUserChanged,
-  onAddNoteModalClose,
-  addNoteModalOpen,
-}) {
+function Dashboard({ user, onUserChanged, onNoteModalClose, NoteModalOpen }) {
   return (
     <div className="dashboard">
       <section className="content">
         <NotesArea notes={user.notes} view={user.view} />
       </section>
-      {addNoteModalOpen && (
-        <AddNoteModal
+      {NoteModalOpen && (
+        <NoteModal
           user={user}
           onUserChanged={onUserChanged}
-          onAddNoteModalClose={onAddNoteModalClose}
+          onNoteModalClose={onNoteModalClose}
         />
       )}
     </div>

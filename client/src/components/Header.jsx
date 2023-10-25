@@ -10,7 +10,7 @@ import {
 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-function Header({ user, onUserChanged, onAddNoteModalOpen }) {
+function Header({ user, onUserChanged, onNoteModalOpen }) {
   const viewIcons = new Map([
     ['list', <HiViewList />],
     ['grid', <HiViewGrid />],
@@ -45,7 +45,7 @@ function Header({ user, onUserChanged, onAddNoteModalOpen }) {
       </div>
       <ul className="options">
         <li>
-          <HiPlus onClick={onAddNoteModalOpen} />
+          <HiPlus onClick={onNoteModalOpen} />
         </li>
         <li>
           <div onClick={handleChangeView}>

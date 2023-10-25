@@ -11,14 +11,14 @@ function App() {
     view: 'list',
     theme: 'dark',
   });
-  const [addNoteModalOpen, setAddNoteModalOpen] = useState(false);
+  const [NoteModalOpen, setNoteModalOpen] = useState(false);
 
-  function handleOpenAddNoteModal() {
-    setAddNoteModalOpen(true);
+  function handleOpenNoteModal() {
+    setNoteModalOpen(true);
   }
 
-  function handleCloseAddNoteModal() {
-    setAddNoteModalOpen(false);
+  function handleCloseNoteModal() {
+    setNoteModalOpen(false);
   }
 
   const isDummyInitialized = useRef(false);
@@ -53,7 +53,7 @@ function App() {
           <Header
             user={user}
             onUserChanged={setUser}
-            onAddNoteModalOpen={handleOpenAddNoteModal}
+            onNoteModalOpen={handleOpenNoteModal}
           />
           <Routes>
             <Route
@@ -62,8 +62,8 @@ function App() {
                 <Dashboard
                   user={user}
                   onUserChanged={setUser}
-                  onAddNoteModalClose={handleCloseAddNoteModal}
-                  addNoteModalOpen={addNoteModalOpen}
+                  onNoteModalClose={handleCloseNoteModal}
+                  NoteModalOpen={NoteModalOpen}
                 />
               }
             />
