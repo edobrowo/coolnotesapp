@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
-import noteService from './features/notes/noteService';
 
 function App() {
   const [user, setUser] = useState({});
