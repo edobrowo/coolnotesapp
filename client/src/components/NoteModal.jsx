@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HiX, HiCheck } from 'react-icons/hi';
+import { HiTrash, HiX, HiCheck } from 'react-icons/hi';
 import noteService from '../features/notes/noteService';
 
 function NoteModal({
@@ -12,13 +12,13 @@ function NoteModal({
   const [title, setTitle] = useState(noteData ? noteData.title : '');
   const [content, setContent] = useState(noteData ? noteData.content : '');
 
-  async function handleCreateNote() {
+  async function createNote() {
     await noteService.createNote({ title: title, content: content });
     const notes = await noteService.retrieveNotes();
     onUserChanged({ ...user, notes: notes });
   }
 
-  async function handleEditNote() {
+  async function editNote() {
     await noteService.editNote({
       id: noteData.id,
       title: title,
@@ -26,16 +26,34 @@ function NoteModal({
     });
     const notes = await noteService.retrieveNotes();
     onUserChanged({ ...user, notes: notes });
-    clearEditedNote();
+  }
+
+  async function removeNote() {
+    await noteService.removeNote(noteData);
+    const notes = await noteService.retrieveNotes();
+    onUserChanged({ ...user, notes: notes });
   }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
     if (noteData) {
-      await handleEditNote(noteData);
+      await editNote(noteData);
     } else {
-      await handleCreateNote(noteData);
+      await createNote(noteData);
     }
+    clearEditedNote();
+    onNoteModalClose();
+  }
+
+  function handleNoteModalClose() {
+    clearEditedNote();
+    onNoteModalClose();
+  }
+
+  async function handleRemoveNote(e) {
+    e.preventDefault();
+    await removeNote();
+    clearEditedNote();
     onNoteModalClose();
   }
 
@@ -43,6 +61,12 @@ function NoteModal({
     <div className="note-modal">
       <div className="overlay"></div>
       <div className="modal-content">
+        <div className="modal-top-bar">
+          {noteData && (
+            <HiTrash className="delete-note" onClick={handleRemoveNote} />
+          )}
+          <HiX className="close-modal" onClick={handleNoteModalClose} />
+        </div>
         <form method="" onSubmit={(e) => handleFormSubmit(e)}>
           <div className="form-group">
             <input
@@ -69,7 +93,6 @@ function NoteModal({
             </button>
           </div>
         </form>
-        <HiX className="close-modal" onClick={onNoteModalClose} />
       </div>
     </div>
   );
