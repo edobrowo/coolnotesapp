@@ -80,11 +80,6 @@ svg {
   align-items: center;
   padding: 10px;
   border-bottom: 0.25em double var(--highlight-color);
-  transition: margin 0.5s, color var(--theme-change-seconds);
-}
-
-.brand a:hover {
-  margin-left: 20px;
 }
 
 .header div a svg {
@@ -121,12 +116,10 @@ svg {
 }
 
 .note {
+  min-width: 0px;
   min-height: 30px;
   max-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  padding: 8px;
+  padding: 10px;
   background: var(--sub-alt-color);
   transition: background-color var(--theme-change-seconds), outline 0.15s;
   border-radius: 10px;
@@ -138,17 +131,24 @@ svg {
 }
 
 .note h3 {
+  max-width: 100%;
+  margin-bottom: 5px;
   font: normal normal 0.85em, var(--font-default);
-  margin-bottom: 0.8em;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .note p {
   font-size: 0.8em;
   line-height: 1.5;
   text-align: left;
-  overflow-wrap: anywhere;
-  text-overflow: ellipsis;
   overflow: hidden;
+  white-space: pre-line;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
 }
 
 .note-modal {
@@ -171,20 +171,20 @@ svg {
 }
 
 .note-modal .modal-content {
+  width: 80%;
+  max-width: 640px;
+  max-height: 90%;
   z-index: 999;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: 90%;
   overflow: auto;
   background: var(--bg-color);
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 1px 5px black;
   border-radius: 10px;
-  width: 80%;
-  max-width: 640px;
   outline: solid 1px var(--text-color);
 }
 
