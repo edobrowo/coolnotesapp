@@ -11,7 +11,7 @@ function App() {
     view: 'list',
     theme: 'dark',
   });
-  const [NoteModalOpen, setNoteModalOpen] = useState(false);
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
 
   function handleOpenNoteModal() {
     setNoteModalOpen(true);
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     async function makeUser() {
-      for (let i = 1; i <= 20; ++i) {
+      for (let i = 1; i <= 5; ++i) {
         await noteService.createNote({
           title: `t${i}`,
           content: `c${i}`,
@@ -62,8 +62,9 @@ function App() {
                 <Dashboard
                   user={user}
                   onUserChanged={setUser}
+                  onNoteModalOpen={handleOpenNoteModal}
                   onNoteModalClose={handleCloseNoteModal}
-                  NoteModalOpen={NoteModalOpen}
+                  noteModalOpen={noteModalOpen}
                 />
               }
             />

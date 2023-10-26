@@ -2,15 +2,40 @@ import { useState } from 'react';
 import { HiX, HiCheck } from 'react-icons/hi';
 import noteService from '../features/notes/noteService';
 
-function NoteModal({ user, onUserChanged, onNoteModalClose }) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+function NoteModal({
+  user,
+  onUserChanged,
+  onNoteModalClose,
+  noteData,
+  clearEditedNote,
+}) {
+  const [title, setTitle] = useState(noteData ? noteData.title : '');
+  const [content, setContent] = useState(noteData ? noteData.content : '');
 
-  async function handleFormSubmit(e) {
-    e.preventDefault();
+  async function handleCreateNote() {
     await noteService.createNote({ title: title, content: content });
     const notes = await noteService.retrieveNotes();
     onUserChanged({ ...user, notes: notes });
+  }
+
+  async function handleEditNote() {
+    await noteService.editNote({
+      id: noteData.id,
+      title: title,
+      content: content,
+    });
+    const notes = await noteService.retrieveNotes();
+    onUserChanged({ ...user, notes: notes });
+    clearEditedNote();
+  }
+
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    if (noteData) {
+      await handleEditNote(noteData);
+    } else {
+      await handleCreateNote(noteData);
+    }
     onNoteModalClose();
   }
 
