@@ -3,57 +3,57 @@ import { HiTrash, HiX, HiCheck } from 'react-icons/hi';
 import noteService from '../features/notes/noteService';
 
 function NoteModal({
-  user,
-  onUserChanged,
+  openedNote,
+  notes,
+  onNotesChanged,
   onNoteModalClose,
-  noteData,
-  clearEditedNote,
+  clearOpenedNote,
 }) {
-  const [title, setTitle] = useState(noteData ? noteData.title : '');
-  const [content, setContent] = useState(noteData ? noteData.content : '');
+  const [title, setTitle] = useState(openedNote ? openedNote.title : '');
+  const [content, setContent] = useState(openedNote ? openedNote.content : '');
 
   async function createNote() {
-    await noteService.createNote({ title: title, content: content });
-    const notes = await noteService.retrieveNotes();
-    onUserChanged({ ...user, notes: notes });
+    const id = await noteService.createNote({ title: title, content: content });
+    // validate
+    onNotesChanged(notes.concat([{ id: id, title: title, content: content }]));
   }
 
   async function editNote() {
-    await noteService.editNote({
-      id: noteData.id,
-      title: title,
-      content: content,
-    });
-    const notes = await noteService.retrieveNotes();
-    onUserChanged({ ...user, notes: notes });
+    await noteService.editNote(openedNote);
+    // validate
+    const index = notes.findIndex((note) => note.id === openedNote.id);
+    notes[index] = { id: openedNote.id, title: title, content: content };
+    onNotesChanged(notes);
   }
 
   async function removeNote() {
-    await noteService.removeNote(noteData);
-    const notes = await noteService.retrieveNotes();
-    onUserChanged({ ...user, notes: notes });
+    await noteService.removeNote(openedNote);
+    // validate
+    const index = notes.findIndex((note) => note.id === openedNote.id);
+    notes.splice(index, 1);
+    onNotesChanged(notes);
   }
 
   async function handleFormSubmit(e) {
     e.preventDefault();
-    if (noteData) {
-      await editNote(noteData);
+    if (openedNote) {
+      await editNote(openedNote);
     } else {
-      await createNote(noteData);
+      await createNote(openedNote);
     }
-    clearEditedNote();
+    clearOpenedNote();
     onNoteModalClose();
   }
 
   function handleNoteModalClose() {
-    clearEditedNote();
+    clearOpenedNote();
     onNoteModalClose();
   }
 
   async function handleRemoveNote(e) {
     e.preventDefault();
     await removeNote();
-    clearEditedNote();
+    clearOpenedNote();
     onNoteModalClose();
   }
 
@@ -62,7 +62,7 @@ function NoteModal({
       <div className="overlay"></div>
       <div className="modal-content">
         <div className="modal-top-bar">
-          {noteData && (
+          {openedNote && (
             <HiTrash className="delete-note" onClick={handleRemoveNote} />
           )}
           <HiX className="close-modal" onClick={handleNoteModalClose} />

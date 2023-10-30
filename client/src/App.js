@@ -5,7 +5,10 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 
 function App() {
-  const [user, setUser] = useState({});
+  const [notes, setNotes] = useState([]);
+  const [theme, setTheme] = useState('dark');
+  const [view, setView] = useState('grid');
+
   const [noteModalOpen, setNoteModalOpen] = useState(false);
 
   function handleOpenNoteModal() {
@@ -19,14 +22,12 @@ function App() {
   return (
     <>
       <Router>
-        <div
-          className={
-            'container' + (user.theme === 'light' ? ' light-mode' : '')
-          }
-        >
+        <div className={'container' + (theme === 'light' ? ' light-mode' : '')}>
           <Header
-            user={user}
-            onUserChanged={setUser}
+            theme={theme}
+            onThemeChanged={setTheme}
+            view={view}
+            onViewChanged={setView}
             onNoteModalOpen={handleOpenNoteModal}
           />
           <Routes>
@@ -34,15 +35,17 @@ function App() {
               path="/"
               element={
                 <Dashboard
-                  user={user}
-                  onUserChanged={setUser}
+                  notes={notes}
+                  onNotesChanged={setNotes}
+                  view={view}
+                  onViewChanged={setView}
                   onNoteModalOpen={handleOpenNoteModal}
                   onNoteModalClose={handleCloseNoteModal}
                   noteModalOpen={noteModalOpen}
                 />
               }
             />
-            <Route path="/login" element={<Login onUserChanged={setUser} />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </Router>

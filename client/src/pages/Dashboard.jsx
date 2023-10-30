@@ -3,35 +3,32 @@ import NotesArea from '../components/NotesArea';
 import NoteModal from '../components/NoteModal';
 
 function Dashboard({
-  user,
-  onUserChanged,
+  notes,
+  onNotesChanged,
+  view,
   onNoteModalOpen,
   onNoteModalClose,
   noteModalOpen,
 }) {
-  const [editedNote, setEditedNote] = useState(null);
+  const [openedNote, setOpenedNote] = useState(null);
 
-  function handleEditNote(noteData) {
-    setEditedNote(noteData);
+  function handleEditNote(note) {
+    setOpenedNote(note);
     onNoteModalOpen();
   }
 
   return (
     <div className="dashboard">
       <section className="content">
-        <NotesArea
-          notes={user.notes}
-          view={user.view}
-          onEditNote={(noteData) => handleEditNote(noteData)}
-        />
+        <NotesArea notes={notes} view={view} onEditNote={handleEditNote} />
       </section>
       {noteModalOpen && (
         <NoteModal
-          user={user}
-          onUserChanged={onUserChanged}
+          openedNote={openedNote}
+          notes={notes}
+          onNotesChanged={onNotesChanged}
           onNoteModalClose={onNoteModalClose}
-          noteData={editedNote}
-          clearEditedNote={() => setEditedNote(null)}
+          clearOpenedNote={() => setOpenedNote(null)}
         />
       )}
     </div>

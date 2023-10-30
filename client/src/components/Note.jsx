@@ -1,8 +1,8 @@
-function Note({ noteData, onEditNote }) {
+function Note({ note, onEditNote }) {
   return (
-    <div className="note" onClick={() => onEditNote(noteData)}>
-      <h3>{noteData.title}</h3>
-      <p>{noteData.content}</p>
+    <div className="note" onClick={() => onEditNote(note)}>
+      <h3>{note.title}</h3>
+      <p>{note.content}</p>
     </div>
   );
 }
