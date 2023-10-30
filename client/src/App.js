@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
+import Auth from './pages/Auth';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -45,7 +45,7 @@ function App() {
                 />
               }
             />
-            <Route path="/login" element={<Login />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </div>
       </Router>

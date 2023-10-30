@@ -41,7 +41,7 @@ function Header({
     console.log('logout');
   }
 
-  const user = true; // hmmm
+  const user = false; // hmmm
 
   return (
     <header className="header">
@@ -67,7 +67,7 @@ function Header({
         </li>
         {!user ? (
           <li>
-            <Link to="/login">
+            <Link to="/auth">
               <HiUser />
             </Link>
           </li>

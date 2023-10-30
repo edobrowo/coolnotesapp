@@ -245,6 +245,49 @@ svg {
   font-size: 1.8em;
 }
 
+.auth .content {
+  margin: 10% 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.auth .content section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.auth .form-group {
+  font-size: 0.75em;
+}
+
+.auth .form-group input {
+  background-color: var(--sub-alt-color);
+  border: none;
+  border-radius: 10px;
+}
+
+.auth .form-group button {
+  width: 100%;
+  margin: 20px 2px;
+  padding: 10px;
+  background-color: var(--bg-color);
+  font: normal normal 1.2em var(--font-default);
+  color: var(--text-color);
+  text-align: left;
+  border: none;
+  border-radius: 10px;
+  outline: solid var(--text-color);
+  transition: background-color 0.15s;
+}
+
+.auth .form-group button:hover {
+  background-color: var(--sub-color);
+}
+
 @media (max-width: 600px) {
   .notes {
     grid-template-columns: repeat(1, 1fr) !important;
