@@ -30,13 +30,11 @@ body {
   height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color var(--theme-change-seconds), color var(--theme-change-seconds);
 }
 
 a {
   text-decoration: none;
   color: var(--text-color);
-  transition: color var(--theme-change-seconds);
 }
 
 ul {
@@ -72,7 +70,6 @@ svg {
   position: sticky;
   top: 0;
   z-index: 10;
-  transition: background-color var(--theme-change-seconds);
 }
 
 .brand a {
@@ -121,7 +118,7 @@ svg {
   max-height: 200px;
   padding: 10px;
   background: var(--sub-alt-color);
-  transition: background-color var(--theme-change-seconds), outline 0.15s;
+  transition: outline 0.15s;
   border-radius: 10px;
   position: relative;
 }
@@ -281,11 +278,11 @@ svg {
   border: none;
   border-radius: 10px;
   outline: solid var(--text-color);
-  transition: background-color 0.15s;
 }
 
 .auth .form-group button:hover {
-  background-color: var(--sub-color);
+  background-color: var(--sub-alt-color);
+  transition: background-color 0.15s;
 }
 
 @media (max-width: 600px) {
