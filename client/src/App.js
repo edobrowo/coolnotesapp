@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
 
 function App() {
+  const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
   const [theme, setTheme] = useState('dark');
   const [view, setView] = useState('grid');
@@ -24,6 +25,7 @@ function App() {
       <Router>
         <div className={'container' + (theme === 'light' ? ' light-mode' : '')}>
           <Header
+            user={user}
             theme={theme}
             onThemeChanged={setTheme}
             view={view}
@@ -35,6 +37,7 @@ function App() {
               path="/"
               element={
                 <Dashboard
+                  user={user}
                   notes={notes}
                   onNotesChanged={setNotes}
                   view={view}

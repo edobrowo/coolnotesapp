@@ -11,6 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 
 function Header({
+  user,
   theme,
   onThemeChanged,
   view,
@@ -41,8 +42,6 @@ function Header({
     console.log('logout');
   }
 
-  const user = false; // hmmm
-
   return (
     <header className="header">
       <div className="brand">
@@ -52,14 +51,18 @@ function Header({
         </Link>
       </div>
       <ul className="options">
-        <li>
-          <HiPlus onClick={onNoteModalOpen} />
-        </li>
-        <li>
-          <div onClick={handleChangeView}>
-            {viewIcons.get(view ? view : 'list')}
-          </div>
-        </li>
+        {user && (
+          <>
+            <li>
+              <HiPlus onClick={onNoteModalOpen} />
+            </li>
+            <li>
+              <div onClick={handleChangeView}>
+                {viewIcons.get(view ? view : 'list')}
+              </div>
+            </li>
+          </>
+        )}
         <li>
           <div onClick={handleChangeTheme}>
             {themeIcons.get(theme ? theme : 'dark')}

@@ -64,7 +64,9 @@ svg {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
+  margin: auto;
   margin-bottom: 20px;
+  max-width: 1000px;
   font-size: 1.6em;
   background-color: var(--bg-color-t);
   position: sticky;
@@ -243,8 +245,10 @@ svg {
 }
 
 .auth .content {
-  margin: 10% 20%;
   display: flex;
+  margin: 100px auto;
+  padding: 0 100px;
+  max-width: 1000px;
   flex-direction: row;
   justify-content: space-between;
   align-items: top;
@@ -288,5 +292,11 @@ svg {
 @media (max-width: 600px) {
   .notes {
     grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .auth .content {
+    flex-direction: column;
   }
 }

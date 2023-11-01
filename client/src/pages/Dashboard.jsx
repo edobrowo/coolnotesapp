@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NotesArea from '../components/NotesArea';
 import NoteModal from '../components/NoteModal';
 
 function Dashboard({
+  user,
   notes,
   onNotesChanged,
   view,
@@ -11,6 +13,18 @@ function Dashboard({
   noteModalOpen,
 }) {
   const [openedNote, setOpenedNote] = useState(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/auth');
+    }
+
+    if (user) {
+      // retrieve notes
+    }
+  }, [user, navigate]);
 
   function handleEditNote(note) {
     setOpenedNote(note);

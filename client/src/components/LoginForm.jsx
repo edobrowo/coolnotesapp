@@ -26,7 +26,6 @@ function LoginForm() {
         <input
           type="email"
           name="email"
-          id="email"
           value={email}
           placeholder="email"
           onChange={onChange}
@@ -36,7 +35,6 @@ function LoginForm() {
         <input
           type="password"
           name="password"
-          id="password"
           value={password}
           placeholder="password"
           onChange={onChange}

@@ -28,7 +28,6 @@ function RegisterForm() {
         <input
           type="text"
           name="name"
-          id="name"
           value={name}
           placeholder="name"
           onChange={onChange}
@@ -38,7 +37,6 @@ function RegisterForm() {
         <input
           type="email"
           name="email"
-          id="email"
           value={email}
           placeholder="email"
           onChange={onChange}
@@ -48,7 +46,6 @@ function RegisterForm() {
         <input
           type="password"
           name="password"
-          id="password"
           value={password}
           placeholder="password"
           onChange={onChange}
@@ -58,7 +55,6 @@ function RegisterForm() {
         <input
           type="passwordConfirm"
           name="passwordConfirm"
-          id="passwordConfirm"
           value={passwordConfirm}
           placeholder="confirm password"
           onChange={onChange}
