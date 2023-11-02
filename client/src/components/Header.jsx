@@ -9,9 +9,11 @@ import {
   HiLogout,
 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import authService from '../features/notes/authService';
 
 function Header({
   user,
+  onUserChanged,
   theme,
   onThemeChanged,
   view,
@@ -39,7 +41,8 @@ function Header({
   }
 
   function handleLogout() {
-    console.log('logout');
+    authService.logout();
+    onUserChanged(null);
   }
 
   return (

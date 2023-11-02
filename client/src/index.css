@@ -289,6 +289,19 @@ svg {
   transition: background-color 0.15s;
 }
 
+.auth .register-error {
+  height: 20px;
+}
+
+.auth .register-error p {
+  text-align: center;
+  color: var(--highlight-color);
+}
+
+.auth form {
+  margin-bottom: 50px;
+}
+
 @media (max-width: 600px) {
   .notes {
     grid-template-columns: repeat(1, 1fr) !important;

@@ -26,6 +26,7 @@ function App() {
         <div className={'container' + (theme === 'light' ? ' light-mode' : '')}>
           <Header
             user={user}
+            onUserChanged={setUser}
             theme={theme}
             onThemeChanged={setTheme}
             view={view}
@@ -48,7 +49,10 @@ function App() {
                 />
               }
             />
-            <Route path="/auth" element={<Auth />} />
+            <Route
+              path="/auth"
+              element={<Auth user={user} onUserChanged={setUser} />}
+            />
           </Routes>
         </div>
       </Router>
