@@ -1,50 +1,53 @@
-class Timestamp {
-  constructor() {
-    this.index = 0;
-  }
+import axios from 'axios';
 
-  get() {
-    return this.index++;
-  }
+const API_URL = '/api/notes/';
+
+async function retrieveNotes(token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(API_URL, config);
+
+  return response.data;
 }
 
-const ts = new Timestamp();
+async function createNote(noteData, token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-class Note {
-  constructor(noteData) {
-    this.id = ts.get();
-    this.title = noteData.title ? noteData.title : '';
-    this.content = noteData.content ? noteData.content : '';
-  }
+  const response = await axios.post(API_URL, noteData, config);
+
+  return response.data;
 }
 
-const notes = [];
+async function removeNote(noteId, token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-async function retrieveNotes() {
-  return notes;
+  const response = await axios.delete(API_URL + noteId, config);
+
+  return response.data;
 }
 
-async function createNote(noteData) {
-  const note = new Note(noteData);
-  notes.push(note);
-  return note.id;
-}
+async function editNote(noteData, token) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-async function removeNote(noteData) {
-  const index = notes.findIndex((note) => note.id === noteData.id);
-  if (index === -1) return -1;
-  const note = notes.shift(index, 1);
-  return note.id;
-}
+  const response = await axios.put(API_URL + noteData.id, noteData, config);
 
-async function editNote(noteData) {
-  const index = notes.findIndex((note) => note.id === noteData.id);
-  if (index === -1) return -1;
-  notes[index].title = noteData.title ? noteData.title : notes[index].title;
-  notes[index].content = noteData.content
-    ? noteData.content
-    : notes[index].content;
-  return notes[index].id;
+  return response.data;
 }
 
 const noteService = {

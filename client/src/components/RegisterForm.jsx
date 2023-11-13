@@ -104,7 +104,7 @@ function RegisterForm({ user, onUserChanged }) {
           sign up
         </button>
       </div>
-      <div className="form-group register-error">
+      <div className="form-group form-group-error">
         <p>{errorMessage}</p>
       </div>
     </form>

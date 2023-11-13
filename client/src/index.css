@@ -289,11 +289,11 @@ svg {
   transition: background-color 0.15s;
 }
 
-.auth .register-error {
+.auth .form-group-error {
   height: 20px;
 }
 
-.auth .register-error p {
+.auth .form-group-error p {
   text-align: center;
   color: var(--highlight-color);
 }

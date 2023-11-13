@@ -7,6 +7,7 @@ function LoginForm({ user, onUserChanged }) {
     email: '',
     password: '',
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const { email, password } = formData;
 
@@ -19,6 +20,7 @@ function LoginForm({ user, onUserChanged }) {
   }, [user, navigate]);
 
   function onChange(e) {
+    setErrorMessage('');
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -33,7 +35,11 @@ function LoginForm({ user, onUserChanged }) {
       password: password,
     });
 
-    onUserChanged(userResult);
+    if (userResult) {
+      onUserChanged(userResult);
+    } else {
+      setErrorMessage('invalid credentials');
+    }
   }
 
   return (
@@ -63,6 +69,9 @@ function LoginForm({ user, onUserChanged }) {
         <button className="login-submit" type="submit">
           sign in
         </button>
+      </div>
+      <div className="form-group form-group-error">
+        <p>{errorMessage}</p>
       </div>
     </form>
   );
