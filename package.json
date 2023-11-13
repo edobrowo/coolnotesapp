@@ -4,7 +4,10 @@
   "description": "Notes app that's pretty cool.",
   "main": "server.js",
   "scripts": {
-    "client": "npm start --prefix client"
+    "server": "node server/server.js",
+    "develop": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "edobrowo",
   "license": "ISC",
