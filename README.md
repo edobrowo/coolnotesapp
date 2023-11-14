@@ -1,10 +1,10 @@
 # cool_notes_app
-Cool notes app. Inspired by Google Keep and Monkeytype.
-
-Frontend - React
-Backend - NodeJS, Express
-Database - Mongo
-Auth - JWT
+Cool notes app. Inspired by Google Keep and Monkeytype.  
+  
+Frontend - React  
+Backend - NodeJS, Express  
+Database - Mongo  
+Auth - JWT  
 
 <img width="1173" alt="image" src="https://github.com/edobrowo/coolnotesapp/assets/67444514/7258779b-24e6-4366-8666-9b541812f5e2">
 <img width="1173" alt="image" src="https://github.com/edobrowo/coolnotesapp/assets/67444514/e3bab7fd-aa2c-4975-8459-2ecf2b5c57fc">
