@@ -45,7 +45,7 @@ async function editNote(noteData, token) {
     },
   };
 
-  const response = await axios.put(API_URL + noteData.id, noteData, config);
+  const response = await axios.put(API_URL + noteData._id, noteData, config);
 
   return response.data;
 }

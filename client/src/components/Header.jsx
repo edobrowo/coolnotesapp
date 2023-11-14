@@ -41,8 +41,8 @@ function Header({
   }
 
   function handleLogout() {
-    authService.logout();
     onUserChanged(null);
+    authService.logout();
   }
 
   return (

@@ -9,11 +9,9 @@ const noteSchema = mongoose.Schema(
     },
     title: {
       type: String,
-      required: [true, 'Note must have a title field'],
     },
     content: {
       type: String,
-      required: [true, 'Note must have a content field'],
     },
   },
   {

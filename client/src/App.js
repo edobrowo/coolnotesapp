@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
+import noteService from './features/notes/noteService';
 
 function App() {
   const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
   const [theme, setTheme] = useState('dark');
   const [view, setView] = useState('grid');
-
   const [noteModalOpen, setNoteModalOpen] = useState(false);
 
   function handleOpenNoteModal() {
@@ -19,6 +19,24 @@ function App() {
   function handleCloseNoteModal() {
     setNoteModalOpen(false);
   }
+
+  async function handleUserChanged(user) {
+    setUser(user);
+    let userNotes = [];
+
+    if (user) {
+      userNotes = await noteService.retrieveNotes(user.token);
+    }
+
+    setNotes(userNotes);
+  }
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      handleUserChanged(storedUser);
+    }
+  }, []);
 
   return (
     <>
@@ -51,7 +69,7 @@ function App() {
             />
             <Route
               path="/auth"
-              element={<Auth user={user} onUserChanged={setUser} />}
+              element={<Auth user={user} onUserChanged={handleUserChanged} />}
             />
           </Routes>
         </div>

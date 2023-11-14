@@ -10,7 +10,7 @@ function NotesArea({ notes, view, onEditNote }) {
     <div className="notes" style={viewStyles.get(view)}>
       {notes &&
         notes.map((note) => (
-          <Note key={note.id} note={note} onEditNote={onEditNote} />
+          <Note key={note._id} note={note} onEditNote={onEditNote} />
         ))}
     </div>
   );

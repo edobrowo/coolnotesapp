@@ -11,11 +11,11 @@ const getNotes = asyncHandler(async (req, res) => {
 
 // Set note - POST /api/notes
 const setNote = asyncHandler(async (req, res) => {
-  if (!req.body.title) {
+  if (req.body.title === undefined) {
     res.status(400);
     throw new Error('Please add a title field');
   }
-  if (!req.body.content) {
+  if (req.body.content === undefined) {
     res.status(400);
     throw new Error('Please add a content field');
   }

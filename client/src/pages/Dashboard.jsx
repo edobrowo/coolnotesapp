@@ -18,13 +18,10 @@ function Dashboard({
 
   useEffect(() => {
     if (!user) {
+      onNotesChanged([]);
       navigate('/auth');
     }
-
-    if (user) {
-      // retrieve notes
-    }
-  }, [user, navigate]);
+  }, [user, navigate, onNotesChanged]);
 
   function handleEditNote(note) {
     setOpenedNote(note);
@@ -43,6 +40,7 @@ function Dashboard({
           onNotesChanged={onNotesChanged}
           onNoteModalClose={onNoteModalClose}
           clearOpenedNote={() => setOpenedNote(null)}
+          user={user}
         />
       )}
     </div>
